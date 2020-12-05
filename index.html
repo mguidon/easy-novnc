@@ -8,7 +8,7 @@
     <meta name="robots" content="noindex">
     <title>noVNC</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    
+
     <style>
         body {
             background: #f4f4f4;
@@ -60,32 +60,30 @@
     <div class="wrapper">
         <div class="connect">
             <h3 class="ui dividing header">noVNC</h3>
-            <form action="/vnc.html" method="GET" class="ui form" id="form">        
+            <form action="vnc.html" method="GET" class="ui form" id="form">
                 <div class="two fields">
                     <div class="field">
                         <label for="host">Host</label>
-                        <input type="text" id="host" placeholder="localhost" autocomplete="off">
+                        <input type="text" id="host" placeholder="172.16.8.64" autocomplete="off">
                     </div>
                     <div class="field">
                         <label for="port">Port</label>
-                        <input type="number" id="port" min="1" max="65535" placeholder="5900" autocomplete="off">
+                        <input type="number" id="port" min="1" max="65535" placeholder="80" autocomplete="off">
                     </div>
                 </div>
-                
-                
-
-                
 
                 <input type="hidden" name="path" id="path" value="vnc">
                 <input type="hidden" name="autoconnect" id="autoconnect" value="true">
 
-                
+
                 <input type="hidden" name="resize" id="resize" value="remote">
-                
+
+                <input type="hidden" name="host" id="host_id" value="127.0.0.1aaaa">
+
 
                 <input class="ui button" type="submit" value="Connect">
 
-                
+
                 <h3 class="ui dividing header">Connection Options</h3>
 
                 <div class="two fields">
@@ -116,18 +114,21 @@
                         </div>
                     </div>
                 </div>
-                
+
             </form>
         </div>
     </div>
     <script>
-        window.addEventListener("load", () => {
-            document.getElementById("form").submit();
-        })
+        // window.addEventListener("load", () => {
+        //     updatePath()
+        //     document.getElementById("form").submit();
+        // })
 
         var path = document.getElementById("path");
-        var host = document.getElementById("host");
+        var host = document.getElementById("host_id");
         var port = document.getElementById("port");
+
+
 
         function updatePath() {
             var addr = "vnc";
@@ -137,7 +138,7 @@
                     addr = addr + "/" + port.value.toString().trim();
                 }
             }
-            path.value = addr;
+            path.value = "vnc";
         }
 
         if (host) {
